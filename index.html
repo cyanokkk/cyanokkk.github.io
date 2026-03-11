@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyan · Five Years Later</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Noto Serif SC',serif;
+    background:linear-gradient(-45deg,#022c2c,#044e54,#0a6c74,#011f1f);
+    background-size:400% 400%;
+    animation:gradientMove 18s ease infinite;
+    color:#e8fdfd;
+    overflow-x:hidden;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+nav{
+position:fixed;
+width:100%;
+top:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+display:flex;
+justify-content:center;
+gap:40px;
+padding:15px;
+z-index:1000;
+}
+
+nav a{
+color:#7fffd4;
+text-decoration:none;
+font-weight:700;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#ffffff;
+}
+
+section{
+min-height:100vh;
+padding:120px 20px 80px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+h1{
+font-size:3rem;
+color:#7fffd4;
+margin-bottom:20px;
+}
+
+h2{
+font-size:2rem;
+margin-bottom:30px;
+}
+
+p{
+max-width:900px;
+line-height:1.8;
+margin-bottom:15px;
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+padding:25px;
+border-radius:15px;
+backdrop-filter:blur(8px);
+box-shadow:0 0 25px rgba(0,255,255,0.15);
+transition:0.4s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 35px rgba(0,255,255,0.4);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+width:100%;
+max-width:1100px;
+}
+
+.future-style{
+font-family:'Playfair Display',serif;
+letter-spacing:1px;
+}
+
+.floating{
+position:fixed;
+font-size:40px;
+opacity:0.1;
+animation:float 8s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0px);}
+}
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.modal-content{
+background:#012f33;
+padding:30px;
+border-radius:15px;
+max-width:600px;
+text-align:center;
+}
+
+.modal img{
+width:100%;
+border-radius:10px;
+margin-top:15px;
+}
+
+.close{
+margin-top:15px;
+cursor:pointer;
+color:#7fffd4;
+}
+
+footer{
+padding:30px;
+text-align:center;
+background:rgba(0,0,0,0.6);
+color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="floating" style="top:20%;left:10%;">⚖️</div>
+<div class="floating" style="top:60%;left:80%;animation-delay:3s;">🔨</div>
+
+<nav>
+<a href="#home">首页</a>
+<a href="#past">现在的我</a>
+<a href="#future">五年后的我</a>
+<a href="#vision">未来支点</a>
+</nav>
+
+<section id="home">
+<h1>Cyan · 青青</h1>
+<p>25岁的我，在上海写下这段文字。</p>
+<p>青出于蓝，而胜于蓝。<br>我没有被定义，我正在成为。</p>
+</section>
+
+<section id="past">
+<h2>20岁的我 · 中国古典风</h2>
+<div class="card">
+<p>武汉大学法学院 · 国际法专业 · 大二</p>
+<p>INFP · 双鱼座 · 同理心强 · 细腻而坚定</p>
+<p>那时的我，在练习法律英语，在修复脊柱侧弯，在清晨跑步，在图书馆读厚厚的书。</p>
+</div>
+</section>
+
+<section id="future" class="future-style">
+<h2>25岁的我 · Modern European Style</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openModal('law')">
+<h3>⚖️ 职业</h3>
+<p>上海涉外实习律师</p>
+</div>
+
+<div class="card" onclick="openModal('body')">
+<h3>🏃 身体</h3>
+<p>长期健身 · 有肌肉线条</p>
+</div>
+
+<div class="card" onclick="openModal('mind')">
+<h3>📚 精神</h3>
+<p>读过很多书 · 更强大的心态</p>
+</div>
+
+<div class="card" onclick="openModal('life')">
+<h3>🌍 生活</h3>
+<p>假期旅行 · 创业项目 · 经济自由</p>
+</div>
+
+</div>
+</section>
+
+<section id="vision">
+<h2>人生支点</h2>
+<p>事业 · 健康 · 创作 · 爱 · 家人 · 朋友</p>
+<p>我学会爱人，也学会保护自己。</p>
+</section>
+
+<footer>
+© 2026 Cyan · Five Years Later
+</footer>
+
+<div class="modal" id="modal">
+<div class="modal-content" id="modalContent"></div>
+</div>
+
+<script>
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speedX:(Math.random()-0.5)*0.5,
+speedY:(Math.random()-0.5)*0.5
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(127,255,212,0.5)";
+particles.forEach(p=>{
+p.x+=p.speedX;
+p.y+=p.speedY;
+if(p.x<0||p.x>canvas.width)p.speedX*=-1;
+if(p.y<0||p.y>canvas.height)p.speedY*=-1;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(animate);
+}
+animate();
+
+function openModal(type){
+const modal=document.getElementById("modal");
+const content=document.getElementById("modalContent");
+
+let html="";
+if(type==="law"){
+html="<h2>涉外律师之路</h2><p>熟练法律英语，处理跨境案件，逻辑清晰而有温度。</p>";
+}
+if(type==="body"){
+html="<h2>身体重建</h2><p>脊柱侧弯明显改善，长期跑步健身，坚持一项暴汗运动。</p>";
+}
+if(type==="mind"){
+html="<h2>精神成长</h2><p>读了很多书，写作与作曲能力成熟，心态更稳定强大。</p>";
+}
+if(type==="life"){
+html="<h2>生活与自由</h2><p>创业项目启动，用自己挣的钱旅行，给家人陪伴。</p>";
+}
+html+="<div class='close' onclick='closeModal()'>关闭</div>";
+content.innerHTML=html;
+modal.style.display="flex";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
