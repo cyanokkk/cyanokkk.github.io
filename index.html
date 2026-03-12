@@ -3,56 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyan · 青青</title>
+<title>Cyan · Narrative</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Noto Serif SC',serif;
-background:linear-gradient(-45deg,#021f1f,#044e54,#0a6c74,#012626);
-background-size:400% 400%;
-animation:gradientMove 20s ease infinite;
-color:#e8fdfd;
+background:#061a1c;
+color:#e8ffff;
 overflow-x:hidden;
-cursor:none;
-}
-
-@keyframes gradientMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
 }
 
 section{
-padding:120px 8%;
+width:85%;
 max-width:1400px;
-margin:auto;
+margin:120px auto;
 }
 
-h1,h2{color:#7fffd4;margin-bottom:30px;}
+h1{
+font-family:'Playfair Display',serif;
+font-size:4rem;
+margin-bottom:30px;
+color:#7fffd4;
+}
+
+h2{
+font-size:2.5rem;
+margin-bottom:40px;
+color:#7fffd4;
+}
+
+p{
+line-height:1.8;
+margin-bottom:15px;
+font-size:1.1rem;
+}
 
 .hero{
-text-align:center;
-min-height:100vh;
+height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(to bottom,#061a1c,#082b2f);
 }
 
 .social{
-margin-top:30px;
+margin-top:40px;
 display:flex;
 gap:30px;
-justify-content:center;
 }
 
 .social a{
-padding:12px 30px;
+padding:14px 35px;
 border:1px solid #7fffd4;
-border-radius:30px;
+border-radius:40px;
 color:#7fffd4;
 text-decoration:none;
 transition:.4s;
@@ -60,99 +69,94 @@ transition:.4s;
 
 .social a:hover{
 background:#7fffd4;
-color:#012f33;
-box-shadow:0 0 25px #7fffd4;
+color:#061a1c;
+transform:scale(1.05);
+box-shadow:0 0 30px #7fffd4;
 }
 
-.info-grid{
+.split{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-margin-top:50px;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
 }
 
-.info-card{
-background:rgba(255,255,255,0.06);
-padding:25px;
-border-radius:15px;
-backdrop-filter:blur(8px);
-transition:.4s;
+.split img{
+width:100%;
+border-radius:20px;
+transition:.6s;
+box-shadow:0 20px 50px rgba(0,255,255,.15);
 }
 
-.info-card:hover{
-transform:translateY(-8px);
-box-shadow:0 0 30px rgba(0,255,255,0.3);
+.split img:hover{
+transform:scale(1.05);
+box-shadow:0 30px 80px rgba(0,255,255,.35);
+}
+
+.card{
+background:rgba(255,255,255,.04);
+padding:40px;
+border-radius:25px;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 40px rgba(0,255,255,.08);
 }
 
 .gallery{
-columns:3 250px;
-column-gap:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
 margin-top:50px;
 }
 
 .gallery img{
 width:100%;
-margin-bottom:20px;
-border-radius:15px;
+border-radius:20px;
+transition:.5s;
 cursor:pointer;
-transition:.4s;
 }
 
 .gallery img:hover{
-transform:scale(1.05);
+transform:scale(1.07);
+box-shadow:0 20px 50px rgba(0,255,255,.3);
 }
 
-.link-box{
-background:rgba(255,255,255,0.05);
-padding:25px;
-border-radius:15px;
+.link-card{
 margin-top:40px;
+padding:30px;
+border-radius:20px;
+background:linear-gradient(135deg,rgba(0,255,200,.1),rgba(0,200,255,.05));
 transition:.4s;
 }
 
-.link-box:hover{
-box-shadow:0 0 30px rgba(0,255,255,0.3);
+.link-card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 60px rgba(0,255,255,.2);
 }
 
 footer{
 text-align:center;
-padding:80px 20px;
-font-size:1.3rem;
+padding:120px 20px;
+font-size:1.4rem;
 line-height:2;
+background:#041314;
 }
 
-#lightbox{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
-z-index:2000;
+.fade{
+opacity:0;
+transform:translateY(60px);
+transition:1.2s ease;
 }
 
-#lightbox img{
-max-width:90%;
-max-height:80%;
-border-radius:15px;
-}
-
-#bird{
-position:fixed;
-width:22px;
-height:22px;
-pointer-events:none;
-z-index:3000;
+.fade.show{
+opacity:1;
+transform:translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<section class="hero fade">
 <h1>Cyan · 青青</h1>
 <p>25岁的我，在回望20岁的自己。</p>
 
@@ -162,98 +166,84 @@ z-index:3000;
 </div>
 </section>
 
-<section>
+<section class="split fade">
+<div>
 <h2>二十岁的我</h2>
-
-<div class="info-grid">
-
-<div class="info-card">
-<h3>🌿 基本信息</h3>
-<p>武汉大学法学院 国际法专业 2024级本科生</p>
+<div class="card">
+<p>武汉大学法学院国际法专业2024级本科生</p>
 <p>来自哈尔滨 · 双鱼座 · INFP</p>
+<p>喜欢弹吉他 听歌 写作 阅读</p>
+<p>喜欢在珞珈山与东湖绿道骑车</p>
+<p>去过欧洲 长沙 汕头</p>
+<p>法学院礼仪队成员 · 金秋服饰大赛参与者</p>
 </div>
-
-<div class="info-card">
-<h3>🎸 兴趣爱好</h3>
-<p>弹吉他 · 听歌 · 写作 · 阅读</p>
-<p>喜欢刘宪华</p>
 </div>
-
-<div class="info-card">
-<h3>🚲 城市与旅行</h3>
-<p>珞珈山骑车 · 东湖绿道</p>
-<p>欧洲 · 长沙 · 汕头</p>
+<div>
+<img src="imag.jpg">
 </div>
+</section>
 
-<div class="info-card">
-<h3>🎓 校园经历</h3>
-<p>法学院礼仪队成员</p>
-<p>参与金秋服饰大赛</p>
-</div>
-
-</div>
-
-<h2 style="margin-top:80px;">我的经历</h2>
-
+<section class="fade">
+<h2>我的经历</h2>
 <div class="gallery">
 <img src="i.jpg">
 <img src="m.jpg">
 <img src="a.jpg">
 <img src="g.jpg">
 <img src="e.jpg">
+<img src="ima.jpg">
 </div>
 
-<div class="link-box">
-<h3>✨ 金秋服饰大赛</h3>
+<div class="link-card">
+<h3>金秋服饰大赛</h3>
 <p>点击进入公众号推文</p>
 <a href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">查看文章</a>
 </div>
 
-<div class="link-box">
-<h3>✨ 支教经历</h3>
-<p>点击进入支教公众号推文</p>
+<div class="link-card">
+<h3>支教经历</h3>
+<p>点击进入支教推文</p>
 <a href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">查看文章</a>
 </div>
-
 </section>
 
-<section>
+<section class="split fade">
+<div>
+<img src="ima.jpg">
+</div>
+<div>
 <h2>二十五岁的我</h2>
-<p>
-武汉大学国际法研究生毕业，上海涉外律师事务所实习律师，仲裁方向。
-有自己的自媒体账号，喜欢阅读写作坚持健身跑步。
-家人身体健康，有很好的朋友生活，有多个生长支点，在慢慢成长。
-</p>
+<div class="card">
+<p>武汉大学国际法研究生毕业</p>
+<p>上海涉外律师事务所实习律师 · 仲裁方向</p>
+<p>有自己的自媒体账号</p>
+<p>喜欢阅读写作 坚持健身跑步</p>
+<p>家人健康 有很好的朋友生活</p>
+<p>有多个生长支点 在慢慢成长</p>
+</div>
+</div>
 </section>
 
-<footer>
+<footer class="fade">
 去爱 去生活 去经历 去受伤 去成长<br>
 学会爱别人 也学会保护自己<br>
 自先 自先爱己 而后爱人
 </footer>
 
-<div id="lightbox"><img></div>
-<img id="bird" src="https://cdn-icons-png.flaticon.com/512/616/616490.png">
-
 <script>
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=lightbox.querySelector("img");
+const faders=document.querySelectorAll(".fade");
+const appearOptions={threshold:0.3};
 
-document.querySelectorAll(".gallery img").forEach(img=>{
-img.addEventListener("click",()=>{
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
+const appearOnScroll=new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting){return;}
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
 });
-});
+},appearOptions);
 
-lightbox.addEventListener("click",()=>{
-lightbox.style.display="none";
-});
-
-const bird=document.getElementById("bird");
-document.addEventListener("mousemove",e=>{
-bird.style.left=e.pageX+"px";
-bird.style.top=e.pageY+"px";
+faders.forEach(fader=>{
+appearOnScroll.observe(fader);
 });
 </script>
 
