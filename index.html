@@ -11,12 +11,12 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    font-family:'Noto Serif SC',serif;
-    background:linear-gradient(-45deg,#022c2c,#044e54,#0a6c74,#011f1f);
-    background-size:400% 400%;
-    animation:gradientMove 18s ease infinite;
-    color:#e8fdfd;
-    overflow-x:hidden;
+font-family:'Noto Serif SC',serif;
+background:linear-gradient(-45deg,#022c2c,#044e54,#0a6c74,#011f1f);
+background-size:400% 400%;
+animation:gradientMove 18s ease infinite;
+color:#e8fdfd;
+overflow-x:hidden;
 }
 
 @keyframes gradientMove{
@@ -52,9 +52,7 @@ font-weight:700;
 transition:0.3s;
 }
 
-nav a:hover{
-color:#ffffff;
-}
+nav a:hover{color:white;}
 
 section{
 min-height:100vh;
@@ -83,6 +81,27 @@ line-height:1.8;
 margin-bottom:15px;
 }
 
+.profile-img{
+width:260px;
+border-radius:15px;
+margin-bottom:25px;
+box-shadow:0 0 40px rgba(0,255,255,0.25);
+transition:0.5s;
+}
+
+.profile-img:hover{
+transform:scale(1.05);
+box-shadow:0 0 60px rgba(0,255,255,0.6);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+width:100%;
+max-width:1100px;
+}
+
 .card{
 background:rgba(255,255,255,0.06);
 padding:25px;
@@ -90,7 +109,6 @@ border-radius:15px;
 backdrop-filter:blur(8px);
 box-shadow:0 0 25px rgba(0,255,255,0.15);
 transition:0.4s;
-cursor:pointer;
 }
 
 .card:hover{
@@ -98,63 +116,38 @@ transform:translateY(-8px);
 box-shadow:0 0 35px rgba(0,255,255,0.4);
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-width:100%;
-max-width:1100px;
+.social{
+margin-top:30px;
+display:flex;
+gap:30px;
 }
 
-.future-style{
-font-family:'Playfair Display',serif;
-letter-spacing:1px;
+.social a{
+padding:12px 25px;
+border:1px solid #7fffd4;
+border-radius:30px;
+color:#7fffd4;
+text-decoration:none;
+transition:0.4s;
+}
+
+.social a:hover{
+background:#7fffd4;
+color:#012f33;
+box-shadow:0 0 20px #7fffd4;
 }
 
 .floating{
 position:fixed;
 font-size:40px;
-opacity:0.1;
+opacity:0.08;
 animation:float 8s ease-in-out infinite;
 }
 
 @keyframes float{
 0%{transform:translateY(0px);}
-50%{transform:translateY(-20px);}
+50%{transform:translateY(-25px);}
 100%{transform:translateY(0px);}
-}
-
-.modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.modal-content{
-background:#012f33;
-padding:30px;
-border-radius:15px;
-max-width:600px;
-text-align:center;
-}
-
-.modal img{
-width:100%;
-border-radius:10px;
-margin-top:15px;
-}
-
-.close{
-margin-top:15px;
-cursor:pointer;
-color:#7fffd4;
 }
 
 footer{
@@ -171,71 +164,47 @@ color:#aaa;
 <canvas id="particles"></canvas>
 
 <div class="floating" style="top:20%;left:10%;">⚖️</div>
-<div class="floating" style="top:60%;left:80%;animation-delay:3s;">🔨</div>
+<div class="floating" style="top:65%;left:85%;animation-delay:3s;">🔨</div>
 
 <nav>
 <a href="#home">首页</a>
-<a href="#past">现在的我</a>
-<a href="#future">五年后的我</a>
-<a href="#vision">未来支点</a>
+<a href="#age20">二十岁的我</a>
+<a href="#age25">二十五岁的我</a>
 </nav>
 
 <section id="home">
 <h1>Cyan · 青青</h1>
-<p>25岁的我，在上海写下这段文字。</p>
-<p>青出于蓝，而胜于蓝。<br>我没有被定义，我正在成为。</p>
+<p>青出于蓝，而胜于蓝。</p>
+<p>我不被定义，我在成为。</p>
+
+<div class="social">
+<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云</a>
+<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音</a>
+</div>
 </section>
 
-<section id="past">
-<h2>20岁的我 · 中国古典风</h2>
-<div class="card">
+<section id="age20">
+<h2>二十岁的我</h2>
+<img src="age20.jpg" class="profile-img">
 <p>武汉大学法学院 · 国际法专业 · 大二</p>
-<p>INFP · 双鱼座 · 同理心强 · 细腻而坚定</p>
-<p>那时的我，在练习法律英语，在修复脊柱侧弯，在清晨跑步，在图书馆读厚厚的书。</p>
-</div>
+<p>INFP · 双鱼座 · 同理心强 · 心思细腻</p>
+<p>在练习法律英语，在图书馆阅读厚重的书，在跑步中修复脊柱侧弯。</p>
+<p>学习能力、理解力、写作能力正在成型。</p>
 </section>
 
-<section id="future" class="future-style">
-<h2>25岁的我 · Modern European Style</h2>
-
-<div class="grid">
-
-<div class="card" onclick="openModal('law')">
-<h3>⚖️ 职业</h3>
-<p>上海涉外实习律师</p>
-</div>
-
-<div class="card" onclick="openModal('body')">
-<h3>🏃 身体</h3>
-<p>长期健身 · 有肌肉线条</p>
-</div>
-
-<div class="card" onclick="openModal('mind')">
-<h3>📚 精神</h3>
-<p>读过很多书 · 更强大的心态</p>
-</div>
-
-<div class="card" onclick="openModal('life')">
-<h3>🌍 生活</h3>
-<p>假期旅行 · 创业项目 · 经济自由</p>
-</div>
-
-</div>
-</section>
-
-<section id="vision">
-<h2>人生支点</h2>
-<p>事业 · 健康 · 创作 · 爱 · 家人 · 朋友</p>
-<p>我学会爱人，也学会保护自己。</p>
+<section id="age25">
+<h2>二十五岁的我</h2>
+<img src="age25.jpg" class="profile-img">
+<p>研究生毕业 · 上海涉外实习律师</p>
+<p>熟练掌握法律英语，拥有扎实专业能力。</p>
+<p>坚持健身，有肌肉线条，有一项暴汗运动。</p>
+<p>能作曲、弹琴、写作，有创业项目，实现经济自由。</p>
+<p>可以给家人物质与精神陪伴，有真正的朋友，也遇到合拍的人。</p>
 </section>
 
 <footer>
 © 2026 Cyan · Five Years Later
 </footer>
-
-<div class="modal" id="modal">
-<div class="modal-content" id="modalContent"></div>
-</div>
 
 <script>
 const canvas=document.getElementById("particles");
@@ -269,32 +238,6 @@ ctx.fill();
 requestAnimationFrame(animate);
 }
 animate();
-
-function openModal(type){
-const modal=document.getElementById("modal");
-const content=document.getElementById("modalContent");
-
-let html="";
-if(type==="law"){
-html="<h2>涉外律师之路</h2><p>熟练法律英语，处理跨境案件，逻辑清晰而有温度。</p>";
-}
-if(type==="body"){
-html="<h2>身体重建</h2><p>脊柱侧弯明显改善，长期跑步健身，坚持一项暴汗运动。</p>";
-}
-if(type==="mind"){
-html="<h2>精神成长</h2><p>读了很多书，写作与作曲能力成熟，心态更稳定强大。</p>";
-}
-if(type==="life"){
-html="<h2>生活与自由</h2><p>创业项目启动，用自己挣的钱旅行，给家人陪伴。</p>";
-}
-html+="<div class='close' onclick='closeModal()'>关闭</div>";
-content.innerHTML=html;
-modal.style.display="flex";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
 </script>
 
 </body>
