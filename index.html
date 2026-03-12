@@ -26,124 +26,124 @@ cursor:none;
 100%{background-position:0% 50%;}
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
-
-nav{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
-display:flex;
-justify-content:center;
-gap:40px;
-padding:15px;
-z-index:1000;
-}
-
-nav a{
-color:#7fffd4;
-text-decoration:none;
-font-weight:700;
-transition:0.3s;
-}
-
-nav a:hover{color:white;}
-
 section{
+padding:120px 8%;
+max-width:1400px;
+margin:auto;
+}
+
+h1,h2{color:#7fffd4;margin-bottom:30px;}
+
+.hero{
+text-align:center;
 min-height:100vh;
-padding:120px 20px 80px;
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
-text-align:center;
 }
 
-h1{
-font-size:3rem;
-color:#7fffd4;
-margin-bottom:20px;
-}
-
-h2{
-font-size:2rem;
-margin-bottom:30px;
-}
-
-p{
-max-width:900px;
-line-height:1.8;
-margin-bottom:15px;
-}
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-width:100%;
-max-width:1100px;
-margin-top:40px;
-}
-
-.gallery img{
-width:100%;
-border-radius:15px;
-transition:0.5s;
-box-shadow:0 0 25px rgba(0,255,255,0.15);
-}
-
-.gallery img:hover{
-transform:scale(1.08);
-box-shadow:0 0 50px rgba(0,255,255,0.5);
-}
-
-.link-card{
+.social{
 margin-top:30px;
-padding:15px 30px;
+display:flex;
+gap:30px;
+justify-content:center;
+}
+
+.social a{
+padding:12px 30px;
 border:1px solid #7fffd4;
 border-radius:30px;
 color:#7fffd4;
 text-decoration:none;
-transition:0.4s;
-display:inline-block;
+transition:.4s;
 }
 
-.link-card:hover{
+.social a:hover{
 background:#7fffd4;
 color:#012f33;
 box-shadow:0 0 25px #7fffd4;
 }
 
-.floating{
-position:fixed;
-font-size:40px;
-opacity:0.08;
-animation:float 8s ease-in-out infinite;
+.info-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:50px;
 }
 
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-25px);}
-100%{transform:translateY(0px);}
+.info-card{
+background:rgba(255,255,255,0.06);
+padding:25px;
+border-radius:15px;
+backdrop-filter:blur(8px);
+transition:.4s;
+}
+
+.info-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 30px rgba(0,255,255,0.3);
+}
+
+.gallery{
+columns:3 250px;
+column-gap:20px;
+margin-top:50px;
+}
+
+.gallery img{
+width:100%;
+margin-bottom:20px;
+border-radius:15px;
+cursor:pointer;
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.link-box{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:15px;
+margin-top:40px;
+transition:.4s;
+}
+
+.link-box:hover{
+box-shadow:0 0 30px rgba(0,255,255,0.3);
 }
 
 footer{
-padding:50px;
 text-align:center;
-font-size:1.2rem;
+padding:80px 20px;
+font-size:1.3rem;
 line-height:2;
+}
+
+#lightbox{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+#lightbox img{
+max-width:90%;
+max-height:80%;
+border-radius:15px;
 }
 
 #bird{
 position:fixed;
-width:25px;
-height:25px;
+width:22px;
+height:22px;
 pointer-events:none;
 z-index:3000;
 }
@@ -152,33 +152,48 @@ z-index:3000;
 
 <body>
 
-<canvas id="particles"></canvas>
-
-<div class="floating" style="top:15%;left:10%;">⚖️</div>
-<div class="floating" style="top:70%;left:85%;animation-delay:3s;">🔨</div>
-
-<nav>
-<a href="#intro">序章</a>
-<a href="#age20">二十岁的我</a>
-<a href="#age25">二十五岁的我</a>
-</nav>
-
-<section id="intro">
+<section class="hero">
 <h1>Cyan · 青青</h1>
-<p>25岁的我，在上海的夜色里回望20岁的自己。</p>
-<p>那时的我，青涩、敏感、充满理想，也在一点点变得坚定。</p>
+<p>25岁的我，在回望20岁的自己。</p>
+
+<div class="social">
+<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云</a>
+<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音</a>
+</div>
 </section>
 
-<section id="age20">
+<section>
 <h2>二十岁的我</h2>
 
-<p><strong>一 · 自我介绍</strong></p>
-<p>武汉大学法学院国际法专业2024级本科生。双鱼座 INFP，来自哈尔滨。</p>
-<p>喜欢弹吉他、听歌、写作、阅读。喜欢在珞珈山骑车，在东湖绿道骑车。</p>
-<p>喜欢刘宪华。喜欢旅行，去过欧洲、长沙、汕头等地。</p>
-<p>喜欢电影与电视剧，喜欢和朋友在一起，经常被朋友治愈，也会和朋友拍很多照片。</p>
+<div class="info-grid">
 
-<p style="margin-top:40px;"><strong>二 · 我的经历</strong></p>
+<div class="info-card">
+<h3>🌿 基本信息</h3>
+<p>武汉大学法学院 国际法专业 2024级本科生</p>
+<p>来自哈尔滨 · 双鱼座 · INFP</p>
+</div>
+
+<div class="info-card">
+<h3>🎸 兴趣爱好</h3>
+<p>弹吉他 · 听歌 · 写作 · 阅读</p>
+<p>喜欢刘宪华</p>
+</div>
+
+<div class="info-card">
+<h3>🚲 城市与旅行</h3>
+<p>珞珈山骑车 · 东湖绿道</p>
+<p>欧洲 · 长沙 · 汕头</p>
+</div>
+
+<div class="info-card">
+<h3>🎓 校园经历</h3>
+<p>法学院礼仪队成员</p>
+<p>参与金秋服饰大赛</p>
+</div>
+
+</div>
+
+<h2 style="margin-top:80px;">我的经历</h2>
 
 <div class="gallery">
 <img src="i.jpg">
@@ -188,19 +203,27 @@ z-index:3000;
 <img src="e.jpg">
 </div>
 
-<p style="margin-top:40px;"><strong>三 · 金秋服饰大赛</strong></p>
-<a class="link-card" href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">查看公众号推文</a>
+<div class="link-box">
+<h3>✨ 金秋服饰大赛</h3>
+<p>点击进入公众号推文</p>
+<a href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">查看文章</a>
+</div>
 
-<p style="margin-top:40px;"><strong>四 · 支教经历</strong></p>
-<a class="link-card" href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">查看支教推文</a>
+<div class="link-box">
+<h3>✨ 支教经历</h3>
+<p>点击进入支教公众号推文</p>
+<a href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">查看文章</a>
+</div>
 
 </section>
 
-<section id="age25">
+<section>
 <h2>二十五岁的我</h2>
-<p>武汉大学国际法研究生毕业，上海涉外律师事务所实习律师，仲裁方向。</p>
-<p>有自己的自媒体账号，喜欢阅读写作，坚持健身跑步。</p>
-<p>家人身体健康，有很好的朋友生活，有多个生长支点，在慢慢成长。</p>
+<p>
+武汉大学国际法研究生毕业，上海涉外律师事务所实习律师，仲裁方向。
+有自己的自媒体账号，喜欢阅读写作坚持健身跑步。
+家人身体健康，有很好的朋友生活，有多个生长支点，在慢慢成长。
+</p>
 </section>
 
 <footer>
@@ -209,40 +232,23 @@ z-index:3000;
 自先 自先爱己 而后爱人
 </footer>
 
+<div id="lightbox"><img></div>
 <img id="bird" src="https://cdn-icons-png.flaticon.com/512/616/616490.png">
 
 <script>
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=lightbox.querySelector("img");
 
-let particles=[];
-for(let i=0;i<100;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speedX:(Math.random()-0.5)*0.5,
-speedY:(Math.random()-0.5)*0.5
+document.querySelectorAll(".gallery img").forEach(img=>{
+img.addEventListener("click",()=>{
+lightbox.style.display="flex";
+lightboxImg.src=img.src;
 });
-}
+});
 
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="rgba(127,255,212,0.5)";
-particles.forEach(p=>{
-p.x+=p.speedX;
-p.y+=p.speedY;
-if(p.x<0||p.x>canvas.width)p.speedX*=-1;
-if(p.y<0||p.y>canvas.height)p.speedY*=-1;
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-ctx.fill();
+lightbox.addEventListener("click",()=>{
+lightbox.style.display="none";
 });
-requestAnimationFrame(animate);
-}
-animate();
 
 const bird=document.getElementById("bird");
 document.addEventListener("mousemove",e=>{
