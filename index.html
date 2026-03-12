@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyan · Five Years Later</title>
+<title>Cyan · 青青</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Noto Serif SC',serif;
-background:linear-gradient(-45deg,#022c2c,#044e54,#0a6c74,#011f1f);
+background:linear-gradient(-45deg,#021f1f,#044e54,#0a6c74,#012626);
 background-size:400% 400%;
-animation:gradientMove 18s ease infinite;
+animation:gradientMove 20s ease infinite;
 color:#e8fdfd;
 overflow-x:hidden;
+cursor:none;
 }
 
 @keyframes gradientMove{
@@ -52,9 +53,7 @@ font-weight:700;
 transition:0.3s;
 }
 
-nav a:hover{
-color:white;
-}
+nav a:hover{color:white;}
 
 section{
 min-height:100vh;
@@ -83,37 +82,39 @@ line-height:1.8;
 margin-bottom:15px;
 }
 
-.profile-img{
-width:280px;
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+width:100%;
+max-width:1100px;
+margin-top:40px;
+}
+
+.gallery img{
+width:100%;
 border-radius:15px;
-margin-bottom:25px;
-box-shadow:0 0 40px rgba(0,255,255,0.25);
 transition:0.5s;
+box-shadow:0 0 25px rgba(0,255,255,0.15);
 }
 
-.profile-img:hover{
-transform:scale(1.05);
-box-shadow:0 0 70px rgba(0,255,255,0.6);
+.gallery img:hover{
+transform:scale(1.08);
+box-shadow:0 0 50px rgba(0,255,255,0.5);
 }
 
-.social{
+.link-card{
 margin-top:30px;
-display:flex;
-gap:30px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.social a{
-padding:12px 25px;
+padding:15px 30px;
 border:1px solid #7fffd4;
 border-radius:30px;
 color:#7fffd4;
 text-decoration:none;
 transition:0.4s;
+display:inline-block;
 }
 
-.social a:hover{
+.link-card:hover{
 background:#7fffd4;
 color:#012f33;
 box-shadow:0 0 25px #7fffd4;
@@ -121,7 +122,7 @@ box-shadow:0 0 25px #7fffd4;
 
 .floating{
 position:fixed;
-font-size:42px;
+font-size:40px;
 opacity:0.08;
 animation:float 8s ease-in-out infinite;
 }
@@ -133,10 +134,18 @@ animation:float 8s ease-in-out infinite;
 }
 
 footer{
-padding:30px;
+padding:50px;
 text-align:center;
-background:rgba(0,0,0,0.6);
-color:#aaa;
+font-size:1.2rem;
+line-height:2;
+}
+
+#bird{
+position:fixed;
+width:25px;
+height:25px;
+pointer-events:none;
+z-index:3000;
 }
 </style>
 </head>
@@ -145,48 +154,62 @@ color:#aaa;
 
 <canvas id="particles"></canvas>
 
-<div class="floating" style="top:18%;left:10%;">⚖️</div>
+<div class="floating" style="top:15%;left:10%;">⚖️</div>
 <div class="floating" style="top:70%;left:85%;animation-delay:3s;">🔨</div>
 
 <nav>
-<a href="#home">首页</a>
+<a href="#intro">序章</a>
 <a href="#age20">二十岁的我</a>
 <a href="#age25">二十五岁的我</a>
 </nav>
 
-<section id="home">
+<section id="intro">
 <h1>Cyan · 青青</h1>
-<p>青出于蓝，而胜于蓝。</p>
-<p>我不被定义，我正在成为。</p>
-
-<div class="social">
-<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云</a>
-<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音</a>
-</div>
+<p>25岁的我，在上海的夜色里回望20岁的自己。</p>
+<p>那时的我，青涩、敏感、充满理想，也在一点点变得坚定。</p>
 </section>
 
 <section id="age20">
 <h2>二十岁的我</h2>
-<img src="imag.jpg" class="profile-img">
-<p>武汉大学法学院 · 国际法专业 · 大二</p>
-<p>INFP · 双鱼座 · 同理心强 · 心思细腻 · 包容度高</p>
-<p>正在练习法律英语，阅读厚重书籍，坚持跑步与身体修复。</p>
-<p>理解力与写作能力不断成长。</p>
+
+<p><strong>一 · 自我介绍</strong></p>
+<p>武汉大学法学院国际法专业2024级本科生。双鱼座 INFP，来自哈尔滨。</p>
+<p>喜欢弹吉他、听歌、写作、阅读。喜欢在珞珈山骑车，在东湖绿道骑车。</p>
+<p>喜欢刘宪华。喜欢旅行，去过欧洲、长沙、汕头等地。</p>
+<p>喜欢电影与电视剧，喜欢和朋友在一起，经常被朋友治愈，也会和朋友拍很多照片。</p>
+
+<p style="margin-top:40px;"><strong>二 · 我的经历</strong></p>
+
+<div class="gallery">
+<img src="i.jpg">
+<img src="m.jpg">
+<img src="a.jpg">
+<img src="g.jpg">
+<img src="e.jpg">
+</div>
+
+<p style="margin-top:40px;"><strong>三 · 金秋服饰大赛</strong></p>
+<a class="link-card" href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">查看公众号推文</a>
+
+<p style="margin-top:40px;"><strong>四 · 支教经历</strong></p>
+<a class="link-card" href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">查看支教推文</a>
+
 </section>
 
 <section id="age25">
 <h2>二十五岁的我</h2>
-<img src="ima.jpg" class="profile-img">
-<p>研究生毕业 · 上海涉外实习律师</p>
-<p>熟练法律英语，扎实专业能力，独立处理涉外事务。</p>
-<p>长期健身，有肌肉线条，拥有一项暴汗运动。</p>
-<p>能够作曲、弹琴、写作，有创业项目，实现经济自由。</p>
-<p>给予家人陪伴，拥有真正的朋友，遇见合拍的人。</p>
+<p>武汉大学国际法研究生毕业，上海涉外律师事务所实习律师，仲裁方向。</p>
+<p>有自己的自媒体账号，喜欢阅读写作，坚持健身跑步。</p>
+<p>家人身体健康，有很好的朋友生活，有多个生长支点，在慢慢成长。</p>
 </section>
 
 <footer>
-© 2026 Cyan · Five Years Later
+去爱 去生活 去经历 去受伤 去成长<br>
+学会爱别人 也学会保护自己<br>
+自先 自先爱己 而后爱人
 </footer>
+
+<img id="bird" src="https://cdn-icons-png.flaticon.com/512/616/616490.png">
 
 <script>
 const canvas=document.getElementById("particles");
@@ -195,7 +218,7 @@ canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
 let particles=[];
-for(let i=0;i<120;i++){
+for(let i=0;i<100;i++){
 particles.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
@@ -220,6 +243,12 @@ ctx.fill();
 requestAnimationFrame(animate);
 }
 animate();
+
+const bird=document.getElementById("bird");
+document.addEventListener("mousemove",e=>{
+bird.style.left=e.pageX+"px";
+bird.style.top=e.pageY+"px";
+});
 </script>
 
 </body>
