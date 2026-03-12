@@ -52,7 +52,9 @@ font-weight:700;
 transition:0.3s;
 }
 
-nav a:hover{color:white;}
+nav a:hover{
+color:white;
+}
 
 section{
 min-height:100vh;
@@ -82,7 +84,7 @@ margin-bottom:15px;
 }
 
 .profile-img{
-width:260px;
+width:280px;
 border-radius:15px;
 margin-bottom:25px;
 box-shadow:0 0 40px rgba(0,255,255,0.25);
@@ -91,35 +93,15 @@ transition:0.5s;
 
 .profile-img:hover{
 transform:scale(1.05);
-box-shadow:0 0 60px rgba(0,255,255,0.6);
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-width:100%;
-max-width:1100px;
-}
-
-.card{
-background:rgba(255,255,255,0.06);
-padding:25px;
-border-radius:15px;
-backdrop-filter:blur(8px);
-box-shadow:0 0 25px rgba(0,255,255,0.15);
-transition:0.4s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 0 35px rgba(0,255,255,0.4);
+box-shadow:0 0 70px rgba(0,255,255,0.6);
 }
 
 .social{
 margin-top:30px;
 display:flex;
 gap:30px;
+flex-wrap:wrap;
+justify-content:center;
 }
 
 .social a{
@@ -134,12 +116,12 @@ transition:0.4s;
 .social a:hover{
 background:#7fffd4;
 color:#012f33;
-box-shadow:0 0 20px #7fffd4;
+box-shadow:0 0 25px #7fffd4;
 }
 
 .floating{
 position:fixed;
-font-size:40px;
+font-size:42px;
 opacity:0.08;
 animation:float 8s ease-in-out infinite;
 }
@@ -163,8 +145,8 @@ color:#aaa;
 
 <canvas id="particles"></canvas>
 
-<div class="floating" style="top:20%;left:10%;">⚖️</div>
-<div class="floating" style="top:65%;left:85%;animation-delay:3s;">🔨</div>
+<div class="floating" style="top:18%;left:10%;">⚖️</div>
+<div class="floating" style="top:70%;left:85%;animation-delay:3s;">🔨</div>
 
 <nav>
 <a href="#home">首页</a>
@@ -175,7 +157,7 @@ color:#aaa;
 <section id="home">
 <h1>Cyan · 青青</h1>
 <p>青出于蓝，而胜于蓝。</p>
-<p>我不被定义，我在成为。</p>
+<p>我不被定义，我正在成为。</p>
 
 <div class="social">
 <a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云</a>
@@ -185,21 +167,21 @@ color:#aaa;
 
 <section id="age20">
 <h2>二十岁的我</h2>
-<img src="age20.jpg" class="profile-img">
+<img src="ima.jpg" class="profile-img">
 <p>武汉大学法学院 · 国际法专业 · 大二</p>
-<p>INFP · 双鱼座 · 同理心强 · 心思细腻</p>
-<p>在练习法律英语，在图书馆阅读厚重的书，在跑步中修复脊柱侧弯。</p>
-<p>学习能力、理解力、写作能力正在成型。</p>
+<p>INFP · 双鱼座 · 同理心强 · 心思细腻 · 包容度高</p>
+<p>正在练习法律英语，阅读厚重书籍，坚持跑步与身体修复。</p>
+<p>理解力与写作能力不断成长。</p>
 </section>
 
 <section id="age25">
 <h2>二十五岁的我</h2>
-<img src="age25.jpg" class="profile-img">
+<img src="imag.jpg" class="profile-img">
 <p>研究生毕业 · 上海涉外实习律师</p>
-<p>熟练掌握法律英语，拥有扎实专业能力。</p>
-<p>坚持健身，有肌肉线条，有一项暴汗运动。</p>
-<p>能作曲、弹琴、写作，有创业项目，实现经济自由。</p>
-<p>可以给家人物质与精神陪伴，有真正的朋友，也遇到合拍的人。</p>
+<p>熟练法律英语，扎实专业能力，独立处理涉外事务。</p>
+<p>长期健身，有肌肉线条，拥有一项暴汗运动。</p>
+<p>能够作曲、弹琴、写作，有创业项目，实现经济自由。</p>
+<p>给予家人陪伴，拥有真正的朋友，遇见合拍的人。</p>
 </section>
 
 <footer>
