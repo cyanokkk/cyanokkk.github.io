@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luan Yu</title>
+<title>栾宇 | Personal Site</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
 --bg1:#0a1a1f;
---bg2:#10262c;
+--bg2:#0f262c;
 --accent:#79aeb6;
+--accent-soft:rgba(121,174,182,0.15);
 --text:#e6f0f2;
 --sub:#8fa6ab;
 --line:rgba(255,255,255,0.06);
@@ -27,50 +28,88 @@ cursor:none;
 overflow-x:hidden;
 }
 
-/* 页面淡入 */
-body{
-opacity:0;
-animation:fadeInBody 1.2s ease forwards;
-}
-@keyframes fadeInBody{
-to{opacity:1;}
-}
-
 /* 光标 */
-.cursor,.cursor-ring{
+.cursor{
+width:8px;height:8px;
+border-radius:50%;
+background:var(--accent);
 position:fixed;
 pointer-events:none;
 z-index:9999;
-border-radius:50%;
 transform:translate(-50%,-50%);
-}
-.cursor{
-width:8px;height:8px;
-background:var(--accent);
 }
 .cursor-ring{
 width:28px;height:28px;
+border-radius:50%;
 border:1px solid var(--accent);
-transition:.2s;
+position:fixed;
+pointer-events:none;
+z-index:9998;
+transform:translate(-50%,-50%);
+opacity:.6;
 }
 
-/* 标题逐字 */
-.section-title h2 span{
-display:inline-block;
-opacity:0;
-transform:translateY(20px);
-animation:letterFade .8s forwards;
-}
-@keyframes letterFade{
-to{opacity:1;transform:translateY(0);}
+/* 进度条 */
+.progress{
+position:fixed;
+top:0;left:0;
+height:2px;
+background:var(--accent);
+width:0%;
+z-index:3000;
 }
 
-/* 通用 */
+/* 粒子 */
+canvas{
+position:fixed;
+top:0;left:0;
+z-index:-1;
+}
+
+/* 封面 */
+.cover{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:100px;
+padding:40px;
+}
+.cover-text h1{
+font-family:'Playfair Display',serif;
+font-size:54px;
+letter-spacing:4px;
+margin-bottom:25px;
+}
+.cover-text p{
+color:var(--sub);
+letter-spacing:2px;
+}
+.enter{
+margin-top:35px;
+padding:10px 36px;
+border:1px solid var(--accent);
+background:transparent;
+color:var(--accent);
+transition:.4s;
+}
+.enter:hover{
+background:var(--accent-soft);
+}
+.cover img{
+width:260px;
+border-radius:12px;
+}
+
+/* 主体 */
+main{display:none;}
 section{
 max-width:1100px;
 margin:200px auto;
 padding:0 20px;
 }
+
+/* 标题 */
 .section-title{
 margin-bottom:80px;
 }
@@ -95,70 +134,140 @@ background:var(--accent);
 margin-top:20px;
 }
 
-/* ===== 杂志排版 Gallery ===== */
+/* About */
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+}
+.info-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:50px;
+}
+.info-block{
+border-top:1px solid var(--line);
+padding-top:15px;
+color:var(--sub);
+font-size:14px;
+}
 
+/* Practice */
+.practice{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+margin-bottom:140px;
+}
+.practice img{
+width:75%;
+border-radius:12px;
+transition:.6s ease;
+}
+.practice img:hover{
+transform:translateY(-6px);
+}
+
+/* ===== 杂志式 Gallery ===== */
 .gallery{
 display:grid;
-grid-template-columns:repeat(6,1fr);
-grid-auto-rows:200px;
-gap:20px;
+grid-template-columns:repeat(4,1fr);
+grid-auto-rows:220px;
+gap:25px;
 }
 
-/* 第一张横向大图 */
-.gallery img:nth-child(1){
-grid-column:1 / span 6;
-grid-row:span 2;
+.gallery-item{
+position:relative;
+overflow:hidden;
+border-radius:16px;
+transition:.6s ease;
 }
 
-/* 竖图完整展示 */
-.gallery img:nth-child(2),
-.gallery img:nth-child(5){
-grid-column:span 2;
-grid-row:span 3;
-object-fit:contain;
-background:#0c2025;
-padding:10px;
-}
-
-/* 横图 */
-.gallery img:nth-child(3){
-grid-column:span 4;
-grid-row:span 2;
-}
-
-.gallery img:nth-child(4){
-grid-column:span 2;
-grid-row:span 2;
-}
-
-.gallery img:nth-child(6){
-grid-column:span 3;
-grid-row:span 2;
-}
-
-.gallery img:nth-child(7){
-grid-column:span 3;
-grid-row:span 2;
-}
-
-.gallery img:nth-child(8){
-grid-column:1 / span 6;
-grid-row:span 2;
-}
-
-/* 图片样式 */
-.gallery img{
+.gallery-item img{
 width:100%;
 height:100%;
 object-fit:cover;
-border-radius:12px;
-transition:transform .6s ease, box-shadow .6s ease;
+transition:transform .8s ease, filter .6s ease;
 }
 
-/* hover 微浮动 */
-.gallery img:hover{
-transform:scale(1.04);
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
+/* 不同节奏 */
+.gallery-item:nth-child(1){
+grid-column:span 2;
+grid-row:span 2;
+}
+.gallery-item:nth-child(4){
+grid-row:span 2;
+}
+.gallery-item:nth-child(7){
+grid-column:span 2;
+}
+
+.gallery-item:hover img{
+transform:scale(1.05);
+filter:brightness(1.05);
+}
+
+/* Writing */
+.card{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+padding:50px;
+border:1px solid var(--line);
+border-radius:18px;
+margin-bottom:140px;
+transition:.5s ease;
+background:rgba(255,255,255,0.02);
+}
+.card:hover{
+transform:translateY(-10px);
+border-color:var(--accent);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+.card img{
+width:100%;
+border-radius:12px;
+}
+.card a{
+display:inline-block;
+margin-top:20px;
+color:var(--accent);
+text-decoration:none;
+}
+
+/* Outlook */
+.outlook{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+}
+.outlook img{
+width:75%;
+border-radius:12px;
+}
+
+/* Connect */
+.connect{
+text-align:center;
+margin-bottom:200px;
+}
+.connect a{
+margin:0 25px;
+color:var(--accent);
+text-decoration:none;
+}
+
+/* 渐现 */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1.2s ease;
+}
+.fade.show{
+opacity:1;
+transform:translateY(0);
 }
 
 /* Lightbox */
@@ -167,30 +276,34 @@ display:none;
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
-background:rgba(0,0,0,.9);
+background:rgba(0,0,0,.92);
 justify-content:center;
 align-items:center;
 z-index:5000;
+opacity:0;
+transition:opacity .4s ease;
 }
 .lightbox img{
 max-width:85%;
 max-height:85%;
-border-radius:12px;
+border-radius:14px;
 }
 
 /* 响应式 */
-@media(max-width:900px){
+@media(max-width:1000px){
+.about-grid,.practice,.card,.outlook{
+grid-template-columns:1fr;
+}
 .gallery{
-grid-template-columns:1fr 1fr;
-grid-auto-rows:180px;
-}
-.gallery img{
-grid-column:span 2 !important;
-grid-row:span 2 !important;
-object-fit:cover !important;
+grid-template-columns:repeat(2,1fr);
+grid-auto-rows:200px;
 }
 }
-
+@media(max-width:600px){
+.gallery{
+grid-template-columns:1fr;
+}
+}
 </style>
 </head>
 
@@ -198,61 +311,121 @@ object-fit:cover !important;
 
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
+<div class="progress"></div>
+<canvas id="particles"></canvas>
 
-<section>
+<div class="cover">
+<div class="cover-text">
+<h1>栾宇</h1>
+<p>去爱 · 去生活 · 去经历 · 去成长</p>
+<button class="enter">ENTER</button>
+</div>
+<img src="imag.jpg">
+</div>
+
+<main>
+
+<section class="fade">
 <div class="section-title">
 <h2>LIFE & JOURNEY</h2>
 <span>MOMENTS</span>
 </div>
 
 <div class="gallery">
-<img src="1.jpg">
-<img src="2.jpg">
-<img src="3.png">
-<img src="8.jpg">
-<img src="10.jpg">
-<img src="4.jpg">
-<img src="7.jpg">
-<img src="9.jpg">
+<div class="gallery-item"><img src="1.jpg"></div>
+<div class="gallery-item"><img src="2.jpg"></div>
+<div class="gallery-item"><img src="3.png"></div>
+<div class="gallery-item"><img src="8.jpg"></div>
+<div class="gallery-item"><img src="10.jpg"></div>
+<div class="gallery-item"><img src="4.jpg"></div>
+<div class="gallery-item"><img src="7.jpg"></div>
+<div class="gallery-item"><img src="9.jpg"></div>
 </div>
+
 </section>
+
+</main>
 
 <div class="lightbox"><img></div>
 
 <script>
+document.querySelector(".enter").onclick=function(){
+document.querySelector(".cover").style.display="none";
+document.querySelector("main").style.display="block";
+};
 
-/* 光标丝滑 */
+// 光标缓动
 const cursor=document.querySelector(".cursor");
 const ring=document.querySelector(".cursor-ring");
 let mouseX=0,mouseY=0,ringX=0,ringY=0;
 
 document.addEventListener("mousemove",e=>{
-mouseX=e.clientX;
-mouseY=e.clientY;
+mouseX=e.clientX; mouseY=e.clientY;
 cursor.style.left=mouseX+"px";
 cursor.style.top=mouseY+"px";
 });
 
-function animate(){
+function animateRing(){
 ringX+=(mouseX-ringX)*0.15;
 ringY+=(mouseY-ringY)*0.15;
 ring.style.left=ringX+"px";
 ring.style.top=ringY+"px";
-requestAnimationFrame(animate);
+requestAnimationFrame(animateRing);
 }
-animate();
+animateRing();
 
-/* 图片放大 */
+// 进度条
+window.onscroll=function(){
+let winScroll=document.documentElement.scrollTop;
+let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+document.querySelector(".progress").style.width=(winScroll/height)*100+"%";
+};
+
+// 渐现
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add("show");
+});
+});
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+
+// lightbox
 const lightbox=document.querySelector(".lightbox");
 const lightImg=lightbox.querySelector("img");
-document.querySelectorAll(".gallery img").forEach(img=>{
+
+document.querySelectorAll(".gallery-item img").forEach(img=>{
 img.onclick=()=>{
 lightbox.style.display="flex";
+setTimeout(()=>lightbox.style.opacity="1",10);
 lightImg.src=img.src;
 };
 });
-lightbox.onclick=()=>lightbox.style.display="none";
+lightbox.onclick=()=>{
+lightbox.style.opacity="0";
+setTimeout(()=>lightbox.style.display="none",400);
+};
 
+// 粒子
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<35;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.3,d:Math.random()*0.4});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(121,174,182,0.15)";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+p.y+=p.d;
+if(p.y>canvas.height)p.y=0;
+});
+}
+setInterval(draw,33);
 </script>
 
 </body>
