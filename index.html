@@ -1,150 +1,194 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyan · Narrative</title>
+<title>Cyan | Personal Narrative</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
-font-family:'Noto Serif SC',serif;
-background:#061a1c;
-color:#e8ffff;
+background:linear-gradient(135deg,#031a1f,#062e36,#0a4b53);
+font-family:'Montserrat',sans-serif;
+color:#e8f6f8;
 overflow-x:hidden;
 }
 
-section{
-width:85%;
+.container{
+width:90%;
 max-width:1400px;
-margin:120px auto;
+margin:auto;
+padding:60px 0;
+}
+
+h1,h2{
+font-family:'Noto Serif SC',serif;
+font-weight:600;
+letter-spacing:2px;
 }
 
 h1{
-font-family:'Playfair Display',serif;
-font-size:4rem;
-margin-bottom:30px;
-color:#7fffd4;
+font-size:48px;
+margin-bottom:20px;
 }
 
 h2{
-font-size:2.5rem;
+font-size:32px;
 margin-bottom:40px;
-color:#7fffd4;
-}
-
-p{
-line-height:1.8;
-margin-bottom:15px;
-font-size:1.1rem;
-}
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
 text-align:center;
-background:linear-gradient(to bottom,#061a1c,#082b2f);
+}
+
+.section{
+margin:120px 0;
+}
+
+.intro{
+text-align:center;
 }
 
 .social{
-margin-top:40px;
-display:flex;
-gap:30px;
+margin-top:20px;
 }
 
 .social a{
-padding:14px 35px;
-border:1px solid #7fffd4;
-border-radius:40px;
-color:#7fffd4;
+display:inline-block;
+margin:10px 20px;
+padding:12px 28px;
+border:1px solid #38cfd9;
+border-radius:30px;
+color:#38cfd9;
 text-decoration:none;
-transition:.4s;
+transition:0.4s;
 }
 
 .social a:hover{
-background:#7fffd4;
-color:#061a1c;
-transform:scale(1.05);
-box-shadow:0 0 30px #7fffd4;
+background:#38cfd9;
+color:#031a1f;
 }
 
-.split{
+.card-grid{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-}
-
-.split img{
-width:100%;
-border-radius:20px;
-transition:.6s;
-box-shadow:0 20px 50px rgba(0,255,255,.15);
-}
-
-.split img:hover{
-transform:scale(1.05);
-box-shadow:0 30px 80px rgba(0,255,255,.35);
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
 .card{
-background:rgba(255,255,255,.04);
-padding:40px;
-border-radius:25px;
-backdrop-filter:blur(15px);
-box-shadow:0 15px 40px rgba(0,255,255,.08);
-}
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-margin-top:50px;
-}
-
-.gallery img{
-width:100%;
+background:rgba(255,255,255,0.05);
+padding:30px;
 border-radius:20px;
-transition:.5s;
-cursor:pointer;
+backdrop-filter:blur(10px);
+transition:0.4s;
 }
 
-.gallery img:hover{
-transform:scale(1.07);
-box-shadow:0 20px 50px rgba(0,255,255,.3);
+.card:hover{
+transform:translateY(-8px);
+background:rgba(255,255,255,0.1);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#38cfd9;
+}
+
+.magazine{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+grid-auto-rows:250px;
+gap:20px;
+}
+
+.magazine img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:20px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.magazine img:hover{
+transform:scale(1.05);
+}
+
+.large{
+grid-column:span 2;
+grid-row:span 2;
+}
+
+.medium{
+grid-column:span 2;
+}
+
+.light-section{
+background:#021417;
+padding:80px 0;
+border-radius:40px;
 }
 
 .link-card{
-margin-top:40px;
+background:linear-gradient(135deg,#0a3b42,#0f5b63);
 padding:30px;
 border-radius:20px;
-background:linear-gradient(135deg,rgba(0,255,200,.1),rgba(0,200,255,.05));
-transition:.4s;
+margin:20px 0;
+transition:0.4s;
 }
 
 .link-card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 60px rgba(0,255,255,.2);
+transform:scale(1.02);
 }
 
-footer{
+.link-card a{
+color:#38cfd9;
+text-decoration:none;
+font-weight:500;
+}
+
+.future{
 text-align:center;
-padding:120px 20px;
-font-size:1.4rem;
-line-height:2;
-background:#041314;
+font-size:20px;
+line-height:1.8;
+max-width:800px;
+margin:auto;
+}
+
+.ending{
+text-align:center;
+margin-top:100px;
+font-size:22px;
+letter-spacing:2px;
+opacity:0.8;
+}
+
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.lightbox img{
+max-width:80%;
+max-height:80%;
+border-radius:20px;
 }
 
 .fade{
 opacity:0;
-transform:translateY(60px);
-transition:1.2s ease;
+transform:translateY(40px);
+transition:1s;
 }
 
 .fade.show{
@@ -156,94 +200,116 @@ transform:translateY(0);
 
 <body>
 
-<section class="hero fade">
+<div class="container intro fade">
 <h1>Cyan · 青青</h1>
-<p>25岁的我，在回望20岁的自己。</p>
+<p>25岁的我，回望20岁的自己。</p>
 
 <div class="social">
-<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云</a>
-<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音</a>
+<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云音乐</a>
+<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音主页</a>
 </div>
-</section>
+</div>
 
-<section class="split fade">
-<div>
+<div class="container section fade">
 <h2>二十岁的我</h2>
-<div class="card">
-<p>武汉大学法学院国际法专业2024级本科生</p>
-<p>来自哈尔滨 · 双鱼座 · INFP</p>
-<p>喜欢弹吉他 听歌 写作 阅读</p>
-<p>喜欢在珞珈山与东湖绿道骑车</p>
-<p>去过欧洲 长沙 汕头</p>
-<p>法学院礼仪队成员 · 金秋服饰大赛参与者</p>
-</div>
-</div>
-<div>
-<img src="imag.jpg">
-</div>
-</section>
 
-<section class="fade">
-<h2>我的经历</h2>
-<div class="gallery">
-<img src="i.jpg">
-<img src="m.jpg">
+<div class="card-grid">
+<div class="card">
+<h3>基本信息</h3>
+<p>武汉大学法学院国际法专业2024级本科生<br>来自哈尔滨</p>
+</div>
+
+<div class="card">
+<h3>性格</h3>
+<p>双鱼座 · INFP<br>敏感 真诚 有同理心</p>
+</div>
+
+<div class="card">
+<h3>兴趣</h3>
+<p>弹吉他 听歌 写作 阅读<br>珞珈山骑车 东湖绿道骑行</p>
+</div>
+
+<div class="card">
+<h3>生活</h3>
+<p>喜欢旅行 欧洲 长沙 汕头<br>电影 电视剧 朋友相伴</p>
+</div>
+</div>
+</div>
+
+<div class="container section fade">
+<h2>成长与记录</h2>
+
+<div class="magazine">
+<img src="i.jpg" class="large">
+<img src="m.jpg" class="medium">
 <img src="a.jpg">
 <img src="g.jpg">
 <img src="e.jpg">
 <img src="ima.jpg">
+<img src="imag.jpg" class="medium">
 </div>
+</div>
+
+<div class="container light-section fade">
+<h2>重要经历</h2>
 
 <div class="link-card">
 <h3>金秋服饰大赛</h3>
-<p>点击进入公众号推文</p>
-<a href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">查看文章</a>
+<a href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">
+点击查看公众号推文
+</a>
 </div>
 
 <div class="link-card">
-<h3>支教经历</h3>
-<p>点击进入支教推文</p>
-<a href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">查看文章</a>
+<h3>暑期支教经历</h3>
+<a href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">
+点击查看公众号推文
+</a>
 </div>
-</section>
 
-<section class="split fade">
-<div>
-<img src="ima.jpg">
 </div>
-<div>
-<h2>二十五岁的我</h2>
-<div class="card">
-<p>武汉大学国际法研究生毕业</p>
-<p>上海涉外律师事务所实习律师 · 仲裁方向</p>
-<p>有自己的自媒体账号</p>
-<p>喜欢阅读写作 坚持健身跑步</p>
-<p>家人健康 有很好的朋友生活</p>
-<p>有多个生长支点 在慢慢成长</p>
-</div>
-</div>
-</section>
 
-<footer class="fade">
+<div class="container section fade">
+<h2>五年后的我</h2>
+<div class="future">
+武汉大学国际法研究生毕业，上海涉外律师事务所实习律师，仲裁方向，有自己的自媒体账号，喜欢阅读写作坚持健身跑步，家人身体健康，有很好的朋友生活，有多个生长支点，在慢慢成长。
+</div>
+
+<div class="ending">
 去爱 去生活 去经历 去受伤 去成长<br>
 学会爱别人 也学会保护自己<br>
 自先 自先爱己 而后爱人
-</footer>
+</div>
+</div>
+
+<div class="lightbox" id="lightbox">
+<img src="">
+</div>
 
 <script>
-const faders=document.querySelectorAll(".fade");
-const appearOptions={threshold:0.3};
-
-const appearOnScroll=new IntersectionObserver(function(entries,observer){
+const faders=document.querySelectorAll('.fade');
+const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
-if(!entry.isIntersecting){return;}
-entry.target.classList.add("show");
-observer.unobserve(entry.target);
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
 });
-},appearOptions);
+});
+faders.forEach(el=>observer.observe(el));
 
-faders.forEach(fader=>{
-appearOnScroll.observe(fader);
+const images=document.querySelectorAll('.magazine img');
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=lightbox.querySelector('img');
+
+images.forEach(img=>{
+img.addEventListener('click',()=>{
+lightbox.style.display='flex';
+lightboxImg.src=img.src;
+});
+});
+
+lightbox.addEventListener('click',()=>{
+lightbox.style.display='none';
 });
 </script>
 
