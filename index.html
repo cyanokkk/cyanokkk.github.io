@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luan Yu | Personal Site</title>
+<title>Luan Yu</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
 --bg1:#0a1a1f;
---bg2:#0f262c;
+--bg2:#10262c;
 --accent:#79aeb6;
---accent-soft:rgba(121,174,182,0.15);
 --text:#e6f0f2;
 --sub:#8fa6ab;
 --line:rgba(255,255,255,0.06);
@@ -28,93 +27,50 @@ cursor:none;
 overflow-x:hidden;
 }
 
-/* 光标升级 */
-.cursor{
-width:10px;height:10px;
-border-radius:50%;
-background:var(--accent);
+/* 页面淡入 */
+body{
+opacity:0;
+animation:fadeInBody 1.2s ease forwards;
+}
+@keyframes fadeInBody{
+to{opacity:1;}
+}
+
+/* 光标 */
+.cursor,.cursor-ring{
 position:fixed;
 pointer-events:none;
 z-index:9999;
+border-radius:50%;
 transform:translate(-50%,-50%);
-transition:background .3s;
+}
+.cursor{
+width:8px;height:8px;
+background:var(--accent);
 }
 .cursor-ring{
-width:30px;height:30px;
-border-radius:50%;
+width:28px;height:28px;
 border:1px solid var(--accent);
-position:fixed;
-pointer-events:none;
-z-index:9998;
-transform:translate(-50%,-50%);
-transition:all .25s ease-out;
-}
-.cursor.hover + .cursor-ring{
-transform:translate(-50%,-50%) scale(1.6);
-opacity:.4;
+transition:.2s;
 }
 
-/* 进度条 */
-.progress{
-position:fixed;
-top:0;left:0;
-height:2px;
-background:var(--accent);
-width:0%;
-z-index:3000;
+/* 标题逐字 */
+.section-title h2 span{
+display:inline-block;
+opacity:0;
+transform:translateY(20px);
+animation:letterFade .8s forwards;
+}
+@keyframes letterFade{
+to{opacity:1;transform:translateY(0);}
 }
 
-/* 粒子 */
-canvas{
-position:fixed;
-top:0;left:0;
-z-index:-1;
-}
-
-/* 封面 */
-.cover{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-gap:100px;
-padding:40px;
-}
-.cover-text h1{
-font-family:'Playfair Display',serif;
-font-size:54px;
-letter-spacing:4px;
-margin-bottom:25px;
-}
-.cover-text p{
-color:var(--sub);
-letter-spacing:2px;
-}
-.enter{
-margin-top:35px;
-padding:10px 36px;
-border:1px solid var(--accent);
-background:transparent;
-color:var(--accent);
-transition:.4s;
-}
-.enter:hover{
-background:var(--accent-soft);
-}
-.cover img{
-width:260px;
-border-radius:12px;
-}
-
-/* 主体 */
-main{display:none;}
+/* 通用 */
 section{
 max-width:1100px;
 margin:200px auto;
 padding:0 20px;
 }
-
-/* 标题升级 */
 .section-title{
 margin-bottom:80px;
 }
@@ -139,143 +95,70 @@ background:var(--accent);
 margin-top:20px;
 }
 
-/* About */
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-}
-.info-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:50px;
-}
-.info-block{
-border-top:1px solid var(--line);
-padding-top:15px;
-color:var(--sub);
-font-size:14px;
-}
+/* ===== 杂志排版 Gallery ===== */
 
-/* Practice */
-.practice{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-margin-bottom:140px;
-}
-.practice img{
-width:75%;
-border-radius:12px;
-}
-
-/* Gallery 非完全对称 */
 .gallery{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
+grid-template-columns:repeat(6,1fr);
+grid-auto-rows:200px;
+gap:20px;
 }
+
+/* 第一张横向大图 */
+.gallery img:nth-child(1){
+grid-column:1 / span 6;
+grid-row:span 2;
+}
+
+/* 竖图完整展示 */
+.gallery img:nth-child(2),
+.gallery img:nth-child(5){
+grid-column:span 2;
+grid-row:span 3;
+object-fit:contain;
+background:#0c2025;
+padding:10px;
+}
+
+/* 横图 */
+.gallery img:nth-child(3){
+grid-column:span 4;
+grid-row:span 2;
+}
+
+.gallery img:nth-child(4){
+grid-column:span 2;
+grid-row:span 2;
+}
+
+.gallery img:nth-child(6){
+grid-column:span 3;
+grid-row:span 2;
+}
+
+.gallery img:nth-child(7){
+grid-column:span 3;
+grid-row:span 2;
+}
+
+.gallery img:nth-child(8){
+grid-column:1 / span 6;
+grid-row:span 2;
+}
+
+/* 图片样式 */
 .gallery img{
 width:100%;
-height:260px;
+height:100%;
 object-fit:cover;
 border-radius:12px;
-transition:.5s;
+transition:transform .6s ease, box-shadow .6s ease;
 }
-.gallery img:nth-child(3){
-transform:translateY(30px);
-}
+
+/* hover 微浮动 */
 .gallery img:hover{
 transform:scale(1.04);
-}
-
-/* Writing 卡片升级 */
-.card{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-padding:50px;
-border:1px solid var(--line);
-border-radius:16px;
-margin-bottom:140px;
-transition:.4s;
-background:rgba(255,255,255,0.02);
-}
-.card:hover{
-transform:translateY(-8px);
-border-color:var(--accent);
-}
-.card img{
-width:100%;
-border-radius:12px;
-}
-.card a{
-display:inline-block;
-margin-top:20px;
-color:var(--accent);
-text-decoration:none;
-position:relative;
-}
-.card a:after{
-content:"";
-position:absolute;
-left:0;bottom:-4px;
-width:0%;
-height:1px;
-background:var(--accent);
-transition:.3s;
-}
-.card a:hover:after{width:100%;}
-
-/* Outlook */
-.outlook{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-}
-.outlook img{
-width:75%;
-border-radius:12px;
-}
-
-/* Connect */
-.connect{
-text-align:center;
-margin-bottom:200px;
-}
-.connect a{
-margin:0 25px;
-color:var(--accent);
-text-decoration:none;
-position:relative;
-}
-.connect a:after{
-content:"";
-position:absolute;
-left:0;bottom:-5px;
-width:0%;
-height:1px;
-background:var(--accent);
-transition:.3s;
-}
-.connect a:hover:after{width:100%;}
-.signature{
-margin-top:80px;
-color:var(--sub);
-line-height:1.8;
-}
-
-/* 渐现 */
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:1.2s ease;
-}
-.fade.show{
-opacity:1;
-transform:translateY(0);
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
 
 /* Lightbox */
@@ -290,20 +173,24 @@ align-items:center;
 z-index:5000;
 }
 .lightbox img{
-max-width:80%;
-max-height:80%;
+max-width:85%;
+max-height:85%;
 border-radius:12px;
 }
 
 /* 响应式 */
 @media(max-width:900px){
-.cover{flex-direction:column;}
-.about-grid,.practice,.card,.outlook{
-grid-template-columns:1fr;
+.gallery{
+grid-template-columns:1fr 1fr;
+grid-auto-rows:180px;
 }
-.gallery{grid-template-columns:1fr 1fr;}
-.practice img,.outlook img{width:100%;}
+.gallery img{
+grid-column:span 2 !important;
+grid-row:span 2 !important;
+object-fit:cover !important;
 }
+}
+
 </style>
 </head>
 
@@ -311,75 +198,13 @@ grid-template-columns:1fr;
 
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
-<div class="progress"></div>
-<canvas id="particles"></canvas>
 
-<!-- 封面 -->
-<div class="cover">
-<div class="cover-text">
-<h1>栾宇</h1>
-<p>去爱 · 去生活 · 去经历 · 去成长</p>
-<button class="enter">ENTER</button>
-</div>
-<img src="imag.jpg">
-</div>
-
-<main>
-
-<section class="fade">
-<div class="section-title">
-<h2>ABOUT</h2>
-<span>WHO I AM</span>
-</div>
-<div class="about-grid">
-<div>
-<p>
-武汉大学法学院国际法专业本科生。<br>
-在理性与热爱之间寻找自己的节奏。
-</p>
-</div>
-<div class="info-grid">
-<div class="info-block">
-<strong>Basic</strong><br>
-哈尔滨 · 双鱼座 · INFP
-</div>
-<div class="info-block">
-<strong>Academic</strong><br>
-国际法专业在读<br>
-关注国际争端与仲裁
-</div>
-<div class="info-block">
-<strong>Interests</strong><br>
-吉他 阅读 写作 旅行
-</div>
-<div class="info-block">
-<strong>Personality</strong><br>
-真诚 敏感 坚定
-</div>
-</div>
-</div>
-</section>
-
-<section class="fade">
-<div class="section-title">
-<h2>PRACTICE</h2>
-<span>GROWTH IN ACTION</span>
-</div>
-<div class="practice">
-<img src="5.jpg">
-<p>礼仪队经历，是秩序与表达的训练。</p>
-</div>
-<div class="practice">
-<p>支教经历，是我与世界温柔对话的一部分。</p>
-<img src="6.jpg">
-</div>
-</section>
-
-<section class="fade">
+<section>
 <div class="section-title">
 <h2>LIFE & JOURNEY</h2>
 <span>MOMENTS</span>
 </div>
+
 <div class="gallery">
 <img src="1.jpg">
 <img src="2.jpg">
@@ -392,117 +217,35 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<section class="fade">
-<div class="section-title">
-<h2>SELECTED WRITING</h2>
-<span>PROJECTS</span>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
-<div>
-<h3>金秋服饰大赛</h3>
-<p>关于舞台与青春的一次记录。</p>
-<a href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">阅读推文</a>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
-<div>
-<h3>暑期支教</h3>
-<p>关于陪伴与成长的一次实践。</p>
-<a href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">阅读推文</a>
-</div>
-</div>
-
-</section>
-
-<section class="fade outlook">
-<div>
-<div class="section-title">
-<h2>OUTLOOK</h2>
-<span>FIVE YEARS LATER</span>
-</div>
-<p>
-武汉大学国际法研究生毕业。<br>
-上海涉外律师事务所实习律师，仲裁方向。<br>
-坚持阅读写作与运动，拥有稳定而温暖的生活结构。
-</p>
-</div>
-<img src="ima.jpg">
-</section>
-
-<section class="fade connect">
-<div class="section-title">
-<h2>CONNECT</h2>
-<span>STAY IN TOUCH</span>
-</div>
-<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云音乐</a>
-<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音主页</a>
-
-<div class="signature">
-去爱 去生活 去经历 去受伤 去成长<br>
-学会爱别人 也学会保护自己<br>
-自先爱己 而后爱人
-</div>
-</section>
-
-</main>
-
 <div class="lightbox"><img></div>
 
 <script>
-// Enter
-document.querySelector(".enter").onclick=function(){
-document.querySelector(".cover").style.display="none";
-document.querySelector("main").style.display="block";
-};
 
-// 光标丝滑
+/* 光标丝滑 */
 const cursor=document.querySelector(".cursor");
 const ring=document.querySelector(".cursor-ring");
 let mouseX=0,mouseY=0,ringX=0,ringY=0;
 
 document.addEventListener("mousemove",e=>{
-mouseX=e.clientX; mouseY=e.clientY;
+mouseX=e.clientX;
+mouseY=e.clientY;
 cursor.style.left=mouseX+"px";
 cursor.style.top=mouseY+"px";
 });
 
-function animateRing(){
+function animate(){
 ringX+=(mouseX-ringX)*0.15;
 ringY+=(mouseY-ringY)*0.15;
 ring.style.left=ringX+"px";
 ring.style.top=ringY+"px";
-requestAnimationFrame(animateRing);
+requestAnimationFrame(animate);
 }
-animateRing();
+animate();
 
-document.querySelectorAll("a,button,img").forEach(el=>{
-el.addEventListener("mouseenter",()=>cursor.classList.add("hover"));
-el.addEventListener("mouseleave",()=>cursor.classList.remove("hover"));
-});
-
-// 进度条
-window.onscroll=function(){
-let winScroll=document.documentElement.scrollTop;
-let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-document.querySelector(".progress").style.width=(winScroll/height)*100+"%";
-};
-
-// 渐现
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting) entry.target.classList.add("show");
-});
-});
-document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
-
-// lightbox
+/* 图片放大 */
 const lightbox=document.querySelector(".lightbox");
 const lightImg=lightbox.querySelector("img");
-document.querySelectorAll("img").forEach(img=>{
+document.querySelectorAll(".gallery img").forEach(img=>{
 img.onclick=()=>{
 lightbox.style.display="flex";
 lightImg.src=img.src;
@@ -510,27 +253,6 @@ lightImg.src=img.src;
 });
 lightbox.onclick=()=>lightbox.style.display="none";
 
-// 粒子
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let particles=[];
-for(let i=0;i<35;i++){
-particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.3,d:Math.random()*0.4});
-}
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="rgba(121,174,182,0.15)";
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fill();
-p.y+=p.d;
-if(p.y>canvas.height)p.y=0;
-});
-}
-setInterval(draw,33);
 </script>
 
 </body>
