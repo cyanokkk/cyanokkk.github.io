@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>栾宇 | Personal Site</title>
+<title>Luan Yu | Personal Site</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -39,7 +39,7 @@ z-index:9999;
 transform:translate(-50%,-50%);
 }
 .cursor-ring{
-width:28px;height:28px;
+width:26px;height:26px;
 border-radius:50%;
 border:1px solid var(--accent);
 position:fixed;
@@ -104,7 +104,7 @@ border-radius:12px;
 /* 主体 */
 main{display:none;}
 section{
-max-width:1100px;
+max-width:1150px;
 margin:200px auto;
 padding:0 20px;
 }
@@ -134,54 +134,19 @@ background:var(--accent);
 margin-top:20px;
 }
 
-/* About */
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-}
-.info-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:50px;
-}
-.info-block{
-border-top:1px solid var(--line);
-padding-top:15px;
-color:var(--sub);
-font-size:14px;
-}
-
-/* Practice */
-.practice{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-margin-bottom:140px;
-}
-.practice img{
-width:75%;
-border-radius:12px;
-transition:.6s ease;
-}
-.practice img:hover{
-transform:translateY(-6px);
-}
-
 /* ===== 杂志式 Gallery ===== */
 .gallery{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-grid-auto-rows:220px;
-gap:25px;
+gap:24px;
+grid-auto-flow:dense;
 }
 
 .gallery-item{
 position:relative;
 overflow:hidden;
 border-radius:16px;
-transition:.6s ease;
+transition:transform .6s ease, box-shadow .6s ease;
 }
 
 .gallery-item img{
@@ -191,72 +156,28 @@ object-fit:cover;
 transition:transform .8s ease, filter .6s ease;
 }
 
-/* 不同节奏 */
+/* 不同节奏排版 */
 .gallery-item:nth-child(1){
 grid-column:span 2;
 grid-row:span 2;
 }
-.gallery-item:nth-child(4){
+
+.gallery-item:nth-child(3){
 grid-row:span 2;
 }
-.gallery-item:nth-child(7){
+
+.gallery-item:nth-child(6){
 grid-column:span 2;
 }
 
+/* 微动效 */
+.gallery-item:hover{
+transform:translateY(-6px);
+box-shadow:0 25px 50px rgba(0,0,0,0.35);
+}
 .gallery-item:hover img{
-transform:scale(1.05);
+transform:scale(1.06);
 filter:brightness(1.05);
-}
-
-/* Writing */
-.card{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-padding:50px;
-border:1px solid var(--line);
-border-radius:18px;
-margin-bottom:140px;
-transition:.5s ease;
-background:rgba(255,255,255,0.02);
-}
-.card:hover{
-transform:translateY(-10px);
-border-color:var(--accent);
-box-shadow:0 20px 40px rgba(0,0,0,0.3);
-}
-.card img{
-width:100%;
-border-radius:12px;
-}
-.card a{
-display:inline-block;
-margin-top:20px;
-color:var(--accent);
-text-decoration:none;
-}
-
-/* Outlook */
-.outlook{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
-}
-.outlook img{
-width:75%;
-border-radius:12px;
-}
-
-/* Connect */
-.connect{
-text-align:center;
-margin-bottom:200px;
-}
-.connect a{
-margin:0 25px;
-color:var(--accent);
-text-decoration:none;
 }
 
 /* 渐现 */
@@ -286,22 +207,26 @@ transition:opacity .4s ease;
 .lightbox img{
 max-width:85%;
 max-height:85%;
-border-radius:14px;
+border-radius:16px;
 }
 
 /* 响应式 */
 @media(max-width:1000px){
-.about-grid,.practice,.card,.outlook{
-grid-template-columns:1fr;
-}
 .gallery{
 grid-template-columns:repeat(2,1fr);
-grid-auto-rows:200px;
+}
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(6){
+grid-column:span 2;
 }
 }
 @media(max-width:600px){
 .gallery{
 grid-template-columns:1fr;
+}
+.gallery-item{
+grid-column:span 1 !important;
+grid-row:span 1 !important;
 }
 }
 </style>
@@ -314,6 +239,7 @@ grid-template-columns:1fr;
 <div class="progress"></div>
 <canvas id="particles"></canvas>
 
+<!-- 封面 -->
 <div class="cover">
 <div class="cover-text">
 <h1>栾宇</h1>
@@ -360,7 +286,8 @@ const ring=document.querySelector(".cursor-ring");
 let mouseX=0,mouseY=0,ringX=0,ringY=0;
 
 document.addEventListener("mousemove",e=>{
-mouseX=e.clientX; mouseY=e.clientY;
+mouseX=e.clientX;
+mouseY=e.clientY;
 cursor.style.left=mouseX+"px";
 cursor.style.top=mouseY+"px";
 });
@@ -389,15 +316,16 @@ if(entry.isIntersecting) entry.target.classList.add("show");
 });
 document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
 
-// lightbox
+// lightbox 淡入
 const lightbox=document.querySelector(".lightbox");
 const lightImg=lightbox.querySelector("img");
 
 document.querySelectorAll(".gallery-item img").forEach(img=>{
 img.onclick=()=>{
 lightbox.style.display="flex";
-setTimeout(()=>lightbox.style.opacity="1",10);
+lightbox.style.opacity="0";
 lightImg.src=img.src;
+setTimeout(()=>lightbox.style.opacity="1",10);
 };
 });
 lightbox.onclick=()=>{
@@ -416,7 +344,7 @@ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Mat
 }
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="rgba(121,174,182,0.15)";
+ctx.fillStyle="rgba(121,174,182,0.12)";
 particles.forEach(p=>{
 ctx.beginPath();
 ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
