@@ -3,31 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyan | Narrative</title>
+<title>Cyan | Personal Site</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
---bg1:#071c22;
---bg2:#0e2a31;
---accent:#7fbac2;
+--bg1:#0b1c22;
+--bg2:#102a30;
+--accent:#6fa8b2;
 --text:#e8f1f2;
---sub:#9fb4b8;
+--sub:#9fb6bb;
 --line:rgba(255,255,255,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-
+html{scroll-behavior:smooth;}
 body{
 font-family:'Inter',sans-serif;
 background:linear-gradient(160deg,var(--bg1),var(--bg2));
 color:var(--text);
 overflow-x:hidden;
-line-height:1.8;
+cursor:none;
 }
 
-/* 滚动进度条 */
+/* 自定义光标 */
+.cursor{
+width:12px;
+height:12px;
+border-radius:50%;
+background:var(--accent);
+position:fixed;
+pointer-events:none;
+z-index:9999;
+transform:translate(-50%,-50%);
+transition:width .2s,height .2s,background .2s;
+}
+.cursor.hover{
+width:28px;
+height:28px;
+background:rgba(111,168,178,0.3);
+}
+
+/* 进度条 */
 .progress{
 position:fixed;
 top:0;
@@ -35,7 +53,7 @@ left:0;
 height:3px;
 background:var(--accent);
 width:0%;
-z-index:2000;
+z-index:3000;
 }
 
 /* 粒子 */
@@ -46,217 +64,257 @@ left:0;
 z-index:-1;
 }
 
-/* 导航 */
-nav{
-position:fixed;
-top:0;
-width:100%;
+/* 封面 */
+.cover{
+height:100vh;
 display:flex;
 justify-content:center;
-padding:20px;
-background:rgba(7,28,34,0.6);
-backdrop-filter:blur(8px);
-z-index:1000;
+align-items:center;
+gap:80px;
+padding:40px;
 }
-
-nav a{
-margin:0 25px;
-text-decoration:none;
-color:var(--sub);
-font-size:13px;
+.cover img{
+width:280px;
+border-radius:8px;
+}
+.cover h1{
+font-family:'Playfair Display',serif;
+font-size:48px;
 letter-spacing:2px;
+margin-bottom:20px;
 }
-
-nav a:hover{
+.enter{
+margin-top:30px;
+padding:10px 30px;
+border:1px solid var(--accent);
+background:transparent;
 color:var(--accent);
+cursor:pointer;
+transition:.3s;
+}
+.enter:hover{
+background:var(--accent);
+color:#fff;
 }
 
-/* 布局 */
+/* 主体隐藏初始 */
+main{display:none;}
+
 section{
 max-width:1100px;
 margin:160px auto;
 padding:0 20px;
 }
 
-/* 标题动画 */
-h1,h2{
-font-family:'Playfair Display',serif;
-font-weight:500;
-}
-
-h1{
-font-size:52px;
-margin-bottom:20px;
-opacity:0;
-transform:translateY(40px);
-animation:fadeUp 1.5s ease forwards;
-}
-
-@keyframes fadeUp{
-to{opacity:1;transform:translateY(0);}
-}
-
 h2{
-font-size:34px;
+font-family:'Playfair Display',serif;
+font-size:32px;
+letter-spacing:3px;
 margin-bottom:60px;
 color:var(--accent);
 }
 
-.sub{
-color:var(--sub);
-max-width:600px;
-}
-
-/* 分屏 */
-.split{
+/* About */
+.about-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:80px;
-align-items:center;
+gap:60px;
 }
-
-.split img{
-width:100%;
-border-radius:6px;
-opacity:0.95;
-transition:0.5s;
-cursor:pointer;
-}
-
-.split img:hover{
-opacity:1;
-}
-
-/* 艺术排版（支教礼仪队） */
-.art-layout{
+.info-grid{
 display:grid;
-grid-template-columns:2fr 1fr;
+grid-template-columns:repeat(2,1fr);
 gap:40px;
-align-items:center;
 }
-
-.art-layout img{
-width:100%;
-border-radius:6px;
-}
-
-.art-text{
-font-size:15px;
+.info-block{
+border-top:1px solid var(--line);
+padding-top:15px;
+font-size:14px;
 color:var(--sub);
 }
 
-/* 画廊 */
+/* Practice */
+.practice-block{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+margin-bottom:120px;
+}
+.practice-block img{
+width:80%;
+border-radius:8px;
+}
+
+/* Gallery */
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
 }
-
 .gallery img{
 width:100%;
-height:300px;
+height:260px;
 object-fit:cover;
-border-radius:6px;
-transition:0.4s;
+border-radius:8px;
 cursor:pointer;
+transition:.4s;
+}
+.gallery img:hover{transform:scale(1.05);}
+
+/* Writing */
+.card{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+margin-bottom:120px;
+padding:40px;
+border:1px solid var(--line);
+border-radius:12px;
+transition:.4s;
+}
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--accent);
+}
+.card img{
+width:100%;
+border-radius:8px;
+}
+.card a{
+display:inline-block;
+margin-top:20px;
+text-decoration:none;
+color:var(--accent);
+border-bottom:1px solid var(--accent);
+padding-bottom:4px;
 }
 
-.gallery img:hover{
-transform:scale(1.03);
+/* Outlook */
+.outlook{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+.outlook img{
+width:80%;
+border-radius:8px;
 }
 
-/* 淡入 */
+/* Connect */
+.connect{
+text-align:center;
+}
+.connect a{
+margin:0 20px;
+color:var(--accent);
+text-decoration:none;
+border-bottom:1px solid var(--accent);
+padding-bottom:4px;
+}
+
+/* 渐现 */
 .fade{
 opacity:0;
 transform:translateY(40px);
-transition:1.2s;
+transition:1s;
 }
-
 .fade.show{
 opacity:1;
 transform:translateY(0);
 }
 
-/* lightbox */
+/* Lightbox */
 .lightbox{
+display:none;
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
 background:rgba(0,0,0,0.85);
-display:none;
 justify-content:center;
 align-items:center;
-z-index:3000;
+z-index:5000;
 }
 .lightbox img{
-max-width:85%;
-max-height:85%;
-}
-
-/* footer */
-footer{
-margin:200px 0 60px;
-text-align:center;
-color:var(--sub);
-font-size:14px;
+max-width:80%;
+max-height:80%;
+border-radius:8px;
 }
 
 /* 响应式 */
 @media(max-width:900px){
-.split,.art-layout{
+.cover{flex-direction:column;}
+.about-grid,.practice-block,.card,.outlook{
 grid-template-columns:1fr;
-gap:40px;
 }
-h1{font-size:36px;}
+.practice-block img,.outlook img{width:100%;}
 }
 </style>
 </head>
 
 <body>
 
+<div class="cursor"></div>
 <div class="progress"></div>
 <canvas id="particles"></canvas>
 
-<nav>
-<a href="#about">ABOUT</a>
-<a href="#practice">PRACTICE</a>
-<a href="#life">LIFE</a>
-<a href="#future">OUTLOOK</a>
-<a href="#connect">CONNECT</a>
-</nav>
-
-<section id="about" class="split fade">
+<!-- 封面 -->
+<div class="cover">
 <div>
-<h1>Cyan · 青青</h1>
-<p class="sub">
-武汉大学法学院国际法专业本科生。<br>
-双鱼座 INFP。<br><br>
-喜欢弹吉他、写作与阅读。<br>
-在珞珈山与东湖绿道骑行。<br><br>
-去爱 去生活 去经历 去成长。
-</p>
+<h1>霍建杰</h1>
+<p>去爱 去生活 去经历 去受伤 去成长</p>
+<button class="enter">ENTER</button>
 </div>
 <img src="imag.jpg">
-</section>
+</div>
 
-<section id="practice" class="fade">
-<h2>Practice</h2>
+<main>
 
-<div class="art-layout">
-<img src="5.jpg">
-<div class="art-text">
-礼仪队经历是对自我表达与秩序感的训练。<br><br>
-<img src="6.jpg" style="margin-top:30px;">
-<p style="margin-top:15px;">
-支教让我理解责任与陪伴。
+<section class="fade">
+<h2>ABOUT</h2>
+<div class="about-grid">
+<div>
+<p>
+25岁的我回望20岁的自己。<br>
+温柔、敏感，也在慢慢坚定。
 </p>
 </div>
+<div class="info-grid">
+<div class="info-block">
+<strong>Basic</strong><br>
+哈尔滨 · 双鱼座 · INFP
 </div>
-
+<div class="info-block">
+<strong>Academic</strong><br>
+武汉大学法学院 · 国际法
+</div>
+<div class="info-block">
+<strong>Interests</strong><br>
+吉他 阅读 写作 旅行
+</div>
+<div class="info-block">
+<strong>Personality</strong><br>
+真诚 同理心 成长型人格
+</div>
+</div>
+</div>
 </section>
 
-<section id="life" class="fade">
-<h2>Travel & Life</h2>
+<section class="fade">
+<h2>PRACTICE</h2>
+<div class="practice-block">
+<img src="5.jpg">
+<p>礼仪队经历，是秩序与表达的训练。</p>
+</div>
+<div class="practice-block">
+<p>支教经历，是我与世界温柔对话的一部分。</p>
+<img src="6.jpg">
+</div>
+</section>
+
+<section class="fade">
+<h2>LIFE & JOURNEY</h2>
 <div class="gallery">
 <img src="1.jpg">
 <img src="2.jpg">
@@ -269,105 +327,122 @@ h1{font-size:36px;}
 </div>
 </section>
 
-<section id="future" class="split fade">
+<section class="fade">
+<h2>SELECTED WRITING</h2>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
 <div>
-<h2>Personal Outlook</h2>
-<p class="sub">
+<h3>金秋服饰大赛</h3>
+<p>关于舞台与青春的一次记录。</p>
+<a href="https://mp.weixin.qq.com/s/kH51zsX5HsuUfACp0iFXGg" target="_blank">阅读推文</a>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7">
+<div>
+<h3>暑期支教</h3>
+<p>关于陪伴与成长的一次实践。</p>
+<a href="https://mp.weixin.qq.com/s/CIJkmXATmp4HeIUWT3OBmw" target="_blank">阅读推文</a>
+</div>
+</div>
+
+</section>
+
+<section class="fade outlook">
+<div>
+<h2>OUTLOOK</h2>
+<p>
 武汉大学国际法研究生毕业。<br>
-上海涉外律师事务所实习律师，仲裁方向。<br><br>
-坚持阅读、写作与健身。<br>
-拥有精神支点与温柔力量。<br>
-在慢慢成长。
+上海涉外律师事务所实习律师，仲裁方向。<br>
+有自己的自媒体账号，坚持阅读写作与健身跑步。<br>
+家人身体健康，有很好的朋友生活，有多个生长支点，在慢慢成长。
 </p>
 </div>
 <img src="ima.jpg">
 </section>
 
-<section id="connect" class="fade">
-<h2>Connect</h2>
-<p class="sub">
-<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank" style="color:var(--accent);">网易云音乐</a><br>
-<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank" style="color:var(--accent);">抖音主页</a>
+<section class="fade connect">
+<h2>CONNECT</h2>
+<a href="https://y.music.163.com/m/user?id=2122121538" target="_blank">网易云音乐</a>
+<a href="https://v.douyin.com/xVakYiPSrJ0/" target="_blank">抖音主页</a>
+<p style="margin-top:60px;color:var(--sub);font-size:14px;">
+自先爱己 而后爱人
 </p>
 </section>
 
-<footer>
-© Cyan · Narrative
-</footer>
+</main>
 
-<div class="lightbox" id="lightbox">
-<img src="">
-</div>
+<div class="lightbox"><img></div>
 
 <script>
-// 滚动进度条
+// enter
+document.querySelector(".enter").onclick=function(){
+document.querySelector(".cover").style.display="none";
+document.querySelector("main").style.display="block";
+};
+
+// 光标
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+document.querySelectorAll("a,button,img").forEach(el=>{
+el.addEventListener("mouseenter",()=>cursor.classList.add("hover"));
+el.addEventListener("mouseleave",()=>cursor.classList.remove("hover"));
+});
+
+// 进度条
 window.onscroll=function(){
-let winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+let winScroll=document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 document.querySelector(".progress").style.width=(winScroll/height)*100+"%";
 };
 
-// 滚动渐现
-const faders=document.querySelectorAll('.fade');
+// 渐现
+const faders=document.querySelectorAll(".fade");
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
-entry.target.classList.add('show');
+entry.target.classList.add("show");
 }
 });
 });
 faders.forEach(el=>observer.observe(el));
 
 // lightbox
-const imgs=document.querySelectorAll("img");
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=lightbox.querySelector("img");
-
-imgs.forEach(img=>{
-img.addEventListener("click",()=>{
+const lightbox=document.querySelector(".lightbox");
+const lightImg=lightbox.querySelector("img");
+document.querySelectorAll(".gallery img,.practice-block img,.outlook img,.cover img").forEach(img=>{
+img.onclick=()=>{
 lightbox.style.display="flex";
-lightboxImg.src=img.src;
+lightImg.src=img.src;
+};
 });
-});
-lightbox.addEventListener("click",()=>lightbox.style.display="none");
+lightbox.onclick=()=>lightbox.style.display="none";
 
-// 极轻粒子
+// 粒子
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-
 let particles=[];
 for(let i=0;i<40;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*1.5,
-d:Math.random()*1
-});
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5,d:Math.random()*0.5});
 }
-
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="rgba(127,186,194,0.3)";
+ctx.fillStyle="rgba(111,168,178,0.2)";
 particles.forEach(p=>{
 ctx.beginPath();
 ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
 ctx.fill();
-});
-update();
-}
-
-function update(){
-particles.forEach(p=>{
-p.y+=p.d*0.3;
-if(p.y>canvas.height){
-p.y=0;
-p.x=Math.random()*canvas.width;
-}
+p.y+=p.d;
+if(p.y>canvas.height)p.y=0;
 });
 }
-
 setInterval(draw,33);
 </script>
 
